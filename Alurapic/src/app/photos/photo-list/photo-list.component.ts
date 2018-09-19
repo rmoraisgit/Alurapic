@@ -16,6 +16,7 @@ export class PhotoListComponent implements OnInit {
   userName: string = '';
   hasMore: boolean = true;
   currentPage: number = 1;
+  valueSearch: string = '';
 
   constructor(private activatedRoute: ActivatedRoute, private photoService: PhotoService) { }
 
@@ -29,6 +30,7 @@ export class PhotoListComponent implements OnInit {
     this.photoService.listFromUserPaginated(this.userName, ++this.currentPage).subscribe(
       photos => {
         this.photos = this.photos.concat(photos);
+        this.filter = '';
 
         if(!photos.length)
           this.hasMore = false;
