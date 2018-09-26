@@ -15,8 +15,8 @@ import { HomeModule } from './home/home.module';
     BrowserModule,
     AppRoutingModule,
     ErrorsModule,
-    PhotosModule,
-    HomeModule
+    HomeModule,
+    PhotosModule
   ],
   providers: [],
   bootstrap: [AppComponent]

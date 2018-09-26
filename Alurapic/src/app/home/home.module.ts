@@ -14,8 +14,6 @@ import { VMessageModule } from '../shared/components/validation-message/vmessage
         ReactiveFormsModule,
         VMessageModule
     ],
-    exports: [
-        SigninComponent
-    ]
+    exports: []
 })
 export class HomeModule { }
