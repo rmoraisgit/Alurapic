@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 import { AuthService } from '../../core/authenticate/auth.service';
 
 @Component({
@@ -8,8 +10,13 @@ import { AuthService } from '../../core/authenticate/auth.service';
 export class SigninComponent implements OnInit {
 
     loginForm: FormGroup;
+    @ViewChild('inputUserName') inputUserName: ElementRef<HTMLInputElement>;
 
-    constructor(private formBuilder: FormBuilder, private authService: AuthService) { }
+    constructor(
+        private formBuilder: FormBuilder, 
+        private authService: AuthService,
+        private router: Router
+        ) { }
 
     ngOnInit(): void {
 
@@ -27,9 +34,12 @@ export class SigninComponent implements OnInit {
         this.authService.authenticate(userName, password).subscribe(
             success => {
                 console.log('TUDO CERTO!');
+                this.router.navigate(['photos', userName])
             },
             error => {
                 console.log('DEU ERRO...');
+                this.loginForm.reset();
+                this.inputUserName.nativeElement.focus();
             }
         )
     }
