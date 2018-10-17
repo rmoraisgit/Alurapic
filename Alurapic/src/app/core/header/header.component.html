@@ -1,0 +1,15 @@
+<header class="sticky-top">
+  <nav class="navbar navbar-light bg-white">
+    <a class="navbar-brand">ALURAPIC</a>
+    <div *ngIf="(user$ | async) as user; else loginTemplate">
+      <i class="fa fa-user-circle mr-1"></i>
+      <a>{{user.name}}</a>
+    </div>
+  </nav>
+</header>
+
+<ng-template #loginTemplate>
+  <span class="navbar-text">
+    Please, login!
+  </span>
+</ng-template>
